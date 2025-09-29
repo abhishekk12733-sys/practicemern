@@ -21,15 +21,15 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-router.post("./login", async (req, res) => {
+router.post("/login", async (req, res) => {
   try {
-    const { username, password } = req.body();
+    const { username, password } = req.body;
     const user = User.findOne({ username });
     const ismatch = await bcrypt.compare(password, user.password);
     if (ismatch) {
-      res.status(400).json({ message: "user already exit" });
+      res.status(400).json({ message: "password wrong" });
     }
-    const token = jwt.sign({ id: user._id }, process.env, JWT_SECERT, {
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECERT, {
       expireIn: "1h",
     });
     res.json({ token, user: { id: user._id, username: user.username } });

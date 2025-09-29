@@ -13,3 +13,4 @@ const verifytoken = (res, req, next) => {
     res.status(401).json({ message: "token not valid" });
   }
 };
+export default verifytoken;

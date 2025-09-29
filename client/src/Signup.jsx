@@ -16,8 +16,8 @@ function Signup() {
     try {
       await API.post("/auth/signup", form);
       const res = API.post("./auth/login", form);
-      setuser(res, data.user);
-      settoken(res, data.token);
+      setuser(res.data.user);
+      settoken(res.data.token);
       navigate("/profile");
     } catch (err) {
       alert(err.response?.data?.message || "signup failed");
