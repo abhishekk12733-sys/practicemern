@@ -8,7 +8,7 @@ function Authprovider({ children }) {
   const [token, settoken] = useState(localStorage.getItem("token") || null);
   useEffect(() => {
     if (token) {
-      localStorage.setItem(token);
+      localStorage.setItem("token",token);
     } else {
       localStorage.removeItem("token");
     }

@@ -4,7 +4,7 @@ import User from "../models/user";
 const router = express.Router();
 router.get("/profile", verifytoken, async (req, res) => {
   try {
-    const user = await user.findById(req.user.id).select("-password");
+    const user = await User.findById(req.user.id).select("-password");
     req.json(user);
   } catch (err) {
     res.status(500).json({ message: "error fetching profile" });

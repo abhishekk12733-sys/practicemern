@@ -26,7 +26,7 @@ router.post("/login", async (req, res) => {
     const { username, password } = req.body;
     const user = User.findOne({ username });
     const ismatch = await bcrypt.compare(password, user.password);
-    if (ismatch) {
+    if (!ismatch) {
       res.status(400).json({ message: "password wrong" });
     }
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECERT, {

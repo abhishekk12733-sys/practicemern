@@ -1,15 +1,50 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
+  const { user, setUser } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+  };
+
   return (
-    <>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Link to="/login">Home</Link>
-      <Link to="/signup">Home</Link>
-      <Link to="/profile">Home</Link>
-      <Link to="/postform">Home</Link>
-    </>
+    <nav className="p-4 bg-gray-200 flex justify-between">
+      <div className="flex gap-4">
+        <Link to="/posts" className="font-semibold">
+          Posts
+        </Link>
+        {user && (
+          <Link to="/create-post" className="font-semibold">
+            Create Post
+          </Link>
+        )}
+      </div>
+      <div className="flex gap-4">
+        {user ? (
+          <>
+            <Link to="/profile" className="font-semibold">
+              {user.username}
+            </Link>
+            <button onClick={handleLogout} className="font-semibold">
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to="/login" className="font-semibold">
+              Login
+            </Link>
+            <Link to="/signup" className="font-semibold">
+              Signup
+            </Link>
+          </>
+        )}
+      </div>
+    </nav>
   );
 }
+
 export default Navbar;

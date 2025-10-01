@@ -7,8 +7,8 @@ const app = express();
 app.use(cros());
 app.use(express.json());
 
-app.use("./authroutes", authroutes);
-app.use("/postroutes", postroutes);
+app.use("/auth", auth );
+app.use("/posts", postroutes);
 
 mongoose
   .connect(process.env.MONGOURI)
