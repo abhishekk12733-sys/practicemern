@@ -1,17 +1,21 @@
 import express from "express";
-import cros from "cros";
-import mongoose from "moongode";
+import cors from "cors";
+import mongoose from "mongoose";
 import dotenv from "dotenv";
+import auth from "./routes/auth.js";
+import postroutes from "./routes/post.js";
+import userroutes from "./routes/user.js";
 dotenv.config();
 const app = express();
-app.use(cros());
+app.use(cors());
 app.use(express.json());
 
-app.use("/auth", auth );
+app.use("/auth", auth);
 app.use("/posts", postroutes);
+app.use("/user", userroutes);
 
 mongoose
-  .connect(process.env.MONGOURI)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("mongoose connect"))
   .catch((err) => console.log(err.message));
 
