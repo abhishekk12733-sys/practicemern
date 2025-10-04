@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import API from "./api";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function PostForm() {
   const [form, setform] = useState({ title: "", content: "" });
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handlechange = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
@@ -14,7 +15,7 @@ function PostForm() {
     e.preventDefault();
     try {
       await API.post("/posts", form);
-      Navigate("/posts");
+      navigate("/posts");
     } catch (err) {
       setError(err.response?.data?.message || "Error creating post");
     }

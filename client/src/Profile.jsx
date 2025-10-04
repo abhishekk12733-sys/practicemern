@@ -7,7 +7,7 @@ function Profile() {
   useEffect(() => {
     const fetchprofile = async () => {
       try {
-        const res = await API.get("/auth/profile", {
+        const res = await API.get("/user/profile", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

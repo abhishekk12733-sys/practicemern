@@ -1,5 +1,5 @@
 import { useState } from "react";
-import API from "../api";
+import API from "./api.js";
 
 function Post({ post, onDelete, onUpdate }) {
   const [isEditing, setIsEditing] = useState(false);

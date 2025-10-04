@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import About from "./About";
 import Home from "./Home";
 import Profile from "./Profile";
@@ -8,6 +8,7 @@ import Login from "./Login";
 import Navbar from "./Navbar";
 import Signup from "./Signup";
 import Protectroute from "./Protectroute";
+import PostList from "./Postlist";
 function App() {
   return (
     <>
@@ -38,27 +39,21 @@ function App() {
               </Protectroute>
             }
           />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
           <Route
-            path="/login"
-            element={
-              <Protectroute>
-                <Login />
-              </Protectroute>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <Protectroute>
-                <Signup />
-              </Protectroute>
-            }
-          />
-          <Route
-            path="/postprofile"
+            path="/postform"
             element={
               <Protectroute>
                 <Postform />
+              </Protectroute>
+            }
+          />
+          <Route
+            path="/posts"
+            element={
+              <Protectroute>
+                <PostList />
               </Protectroute>
             }
           />

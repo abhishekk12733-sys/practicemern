@@ -3,18 +3,18 @@ import API from "./api";
 import { AuthContext } from "./context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-const navigate = useNavigate();
 
 function Login() {
   const [form, setform] = useState({ username: "", password: "" });
-  const [setuser, settoken] = useContext(AuthContext);
+  const { setuser, settoken } = useContext(AuthContext);
+  const navigate = useNavigate();
   const handlechnage = (e) => {
     setform({ ...form, [e.target.name]: e.target.value });
   };
   const handlesubmit = async (e) => {
-    e.prevenDefault();
+    e.preventDefault();
     try {
-      const res = API.post("./auth/login", form);
+      const res = await API.post("./auth/login", form);
       setuser(res.data.user);
       settoken(res.data.token);
       navigate("/profile");
@@ -38,7 +38,7 @@ function Login() {
             onChange={handlechnage}
             placeholder="enter password"
           />
-          <Button type="submit">Submit</Button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </>
