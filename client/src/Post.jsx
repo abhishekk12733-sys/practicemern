@@ -23,7 +23,7 @@ function Post({ post, onDelete, onUpdate }) {
   };
 
   return (
-    <div className="border p-4 rounded mb-3 bg-gray-100">
+    <div className="border p-4 rounded bg-gray-200">
       {isEditing ? (
         <>
           <input

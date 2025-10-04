@@ -22,20 +22,27 @@ function PostForm() {
   };
   return (
     <>
-      <form onSubmit={handlesubmit}>
+      <form onSubmit={handlesubmit} className="p-4 bg-gray-200">
         <input
           name="title"
           value={form.title}
           onChange={handlechange}
-          placeholder="enter"
+          placeholder="Enter"
+          className="w-full mb-2 border bg-gray-200 rounded p-1"
         />
         <input
           name="content"
           value={form.content}
           onChange={handlechange}
-          placeholder="enter"
+          placeholder="Enter"
+          className="w-full mb-2 border bg-gray-200 rounded p-1"
         />
-        <button type="submit">enter</button>
+        <button
+          className="bg-amber-300 rounded-sm px-2 p-1 hover:bg-amber-400"
+          type="submit"
+        >
+          enter
+        </button>
       </form>
     </>
   );
